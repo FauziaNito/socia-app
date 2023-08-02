@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 
-/*READ */
-export const getUser = async (res, req) => {
+/* READ */
+export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
@@ -14,7 +14,7 @@ export const getUser = async (res, req) => {
 export const getUserFriends = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findBy(id);
+    const user = await User.findById(id);
 
     const friends = await Promise.all(
       user.friends.map((id) => User.findById(id))
@@ -30,9 +30,8 @@ export const getUserFriends = async (req, res) => {
   }
 };
 
-/*UPDATE*/
-
-export const addRemoveFriends = async (res, req) => {
+/* UPDATE*/
+export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;
     const user = await User.findById(id);
