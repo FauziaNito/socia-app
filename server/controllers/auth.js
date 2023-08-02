@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 /* REGISTER USER*/
-export const register = async (res, req) => {
+export const register = async (req, res) => {
   try {
     const {
       firstName,
@@ -38,9 +38,9 @@ export const register = async (res, req) => {
 
     // Save the new user to the database
     const savedUser = await newUser.save();
-    res.status(201).json(saveUser);
+    res.status(201).json(savedUser);
   } catch (err) {
-    res.stauts(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
